@@ -1,0 +1,31 @@
+REMEMBER VOLUME LEVEL IS IN THE RANGE FROM 0.0-1.0, ALSO NO SPACES AFTER EQUAL SIGN
+GAMES
+Overwatch.exe=0.2
+HaloInfinite.exe=0.25
+AssettoCorsa.exe=0.65
+acs.exe=0.95
+pCARS2AVX.exe=0.85
+DOOMEternalx64vk.exe=0.3
+
+NOT GAMES
+pycharm64.exe=1.0
+chrome.exe=1.0
+explorer.exe=1.0
+Spotify.exe=1.0
+Battle.net.exe=1.0
+ApplicationFrameHost.exe=1.0
+Taskmgr.exe=1.0
+steam.exe=1.0
+msedge.exe=1.0
+Discord.exe=1.0
+SearchHost.exe=1.0
+ShellExperienceHost.exe=1.0
+pycharm64.exe=1.0
+chrome.exe=1.0
+ApplicationFrameHost.exe=1.0
+explorer.exe=1.0
+Battle.net.exe=1.0
+python.exe=1.0
+PDR.exe=1.0
+OLRSubmission.exe=1.0
+
