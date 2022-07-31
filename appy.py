@@ -19,8 +19,10 @@ def master_vol_set(level: float) -> None:
         IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
     volume = cast(interface, POINTER(IAudioEndpointVolume))
 
-    # Found from this forum page: https://github.com/AndreMiras/pycaw/issues/13
-    volume.SetMasterVolumeLevelScalar(level, None)
+    if volume.GetMasterVolumeLevelScalar() > level:
+        # Found from this forum page: https://github.com/AndreMiras/pycaw/issues/13
+        volume.SetMasterVolumeLevelScalar(level, None)
+        print(f"changed master volume to:{level}")
 
 
 def vol_setter(active: dict, level=1.0) -> dict:
@@ -82,28 +84,22 @@ def active_window_process_name() -> str:
 
 
 if __name__ == '__main__':
-    vols = {'Default': 1.0}
-    autos = {}
-    gamesy = {}
+    settings = settings_retriever()
+
+    vols = settings['all']
+    autos = settings['auto_pause']
+    gamesy = settings['games']
     activ = {}
-    pref_master_vol = 0.25
+    pref_master_vol = settings["pref_master_vol"]
     prev_game = 'Default'
 
-    settings_retriever(vols, autos, gamesy)
     print("----STARTED----")
-
-    # Icon generation stuff for quick settings
-    # icon('test', create_image(64, 64, 'black', 'white'), menu=menu(
-    #     item(
-    #         'Checkable',
-    #         on_clicked,
-    #         checked=lambda item: state))).run()
-
 
     # *** NOTE add gui update button the says following: "sorry, function not
     # available please update to add"
+    startty = True
     curr = None
-    while state:
+    while True:
         new = active_window_process_name()
         if curr != new:
             print(f'Now on: {new}')
