@@ -89,6 +89,8 @@ if __name__ == '__main__':
     vols = settings['all']
     autos = settings['auto_pause']
     gamesy = settings['games']
+    # activ stores the current open applications, so spotify volume is not
+    # adjusted while for example using chrome while waiting for a match to load
     activ = {}
     pref_master_vol = settings["pref_master_vol"]
     prev_game = 'Default'
@@ -104,19 +106,29 @@ if __name__ == '__main__':
         if curr != new:
             print(f'Now on: {new}')
 
+            # checks to see if current window is a game, adds it to activ
             if new in gamesy and new not in activ:
                 activ[new] = vols[new]
                 prev_game = new
 
+            # checks if the current focused window has been used before, while
+            # program is running
             if new in vols:
                 curr = new
+
+                # if prev_game is default that means the current focused window
+                # is not one in which volume adjustment is needed
                 if prev_game == 'Default':
                     activ = vol_setter(activ, vols[new])
+
+                # an application which needs spotify's volume adjusted
                 else:
-                    activ = vol_setter(activ, 1.0)
+                    activ = vol_setter(activ)
                     master_vol_set(pref_master_vol)
                     prev_game = 'Default'
 
+            # adds the current focused window to the json file for review by the
+            # user.
             else:
                 vols[new] = 1.0
                 curr = new
