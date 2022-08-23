@@ -24,7 +24,8 @@
     "VALORANT-Win64-Shipping.exe": 0.2,
     "ShellExperienceHost.exe": 1.0,
     "dirtrally2.exe": 0.85,
-    "SearchHost.exe": 1.0
+    "SearchHost.exe": 1.0,
+    "StartMenuExperienceHost.exe": 1.0
   },
   "games": {
     "Overwatch.exe": 0.2,
@@ -36,6 +37,6 @@
     "VALORANT-Win64-Shipping.exe": 0.2,
     "dirtrally2.exe": 0.85
   },
-  "pref_master_vol": 0.55,
+  "pref_master_vol": 0.35,
   "auto_pause": {}
 }

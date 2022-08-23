@@ -8,6 +8,7 @@ from comtypes import CLSCTX_ALL
 from pycaw.pycaw import AudioUtilities, ISimpleAudioVolume, IAudioEndpointVolume
 from file_manip import *
 from icon_stuff import *
+# from pywinauto import Desktop
 
 
 def master_vol_set(level: float) -> None:
@@ -82,6 +83,16 @@ def active_window_process_name() -> str:
         except:
             pass
 
+# following function has a COM threading error, maybe hold off
+# def is_spot_open() -> bool:
+#     """
+#     A function that verifies if spotify is open.
+#     """
+#     windows = Desktop(backend="uia").windows()
+#     for w in windows:
+#         if w.window_text() == 'Spotify Premium':
+#             return True
+
 
 if __name__ == '__main__':
     settings = settings_retriever()
@@ -102,34 +113,37 @@ if __name__ == '__main__':
     startty = True
     curr = None
     while True:
-        new = active_window_process_name()
-        if curr != new:
-            print(f'Now on: {new}')
+        # the or True is a placeholder for when I fix is_spot_open
+        if True:
+            new = active_window_process_name()
+            if curr != new:
+                print(f'Now on: {new}')
 
-            # checks to see if current window is a game, adds it to activ
-            if new in gamesy and new not in activ:
-                activ[new] = vols[new]
-                prev_game = new
+                # checks to see if current window is a game, adds it to activ
+                if new in gamesy and new not in activ:
+                    activ[new] = vols[new]
+                    prev_game = new
 
-            # checks if the current focused window has been used before, while
-            # program is running
-            if new in vols:
-                curr = new
+                # checks if the current focused window has been used before, while
+                # program is running
+                if new in vols:
+                    curr = new
 
-                # if prev_game is default that means the current focused window
-                # is not one in which volume adjustment is needed
-                if prev_game == 'Default':
-                    activ = vol_setter(activ, vols[new])
+                    # if prev_game is default that means the current focused window
+                    # is not one in which volume adjustment is needed
+                    if prev_game == 'Default':
+                        activ = vol_setter(activ, vols[new])
 
-                # an application which needs spotify's volume adjusted
+                    # an application which needs spotify's volume adjusted
+                    else:
+                        activ = vol_setter(activ)
+                        master_vol_set(pref_master_vol)
+                        # master_vol_set(vols[prev_game])
+                        prev_game = 'Default'
+
+                # adds the current focused window to the json file for review by the
+                # user.
                 else:
-                    activ = vol_setter(activ)
-                    master_vol_set(pref_master_vol)
-                    prev_game = 'Default'
-
-            # adds the current focused window to the json file for review by the
-            # user.
-            else:
-                vols[new] = 1.0
-                curr = new
-                vol_app_adder(new)
+                    vols[new] = 1.0
+                    curr = new
+                    vol_app_adder(new)
