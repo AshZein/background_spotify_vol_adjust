@@ -4,6 +4,7 @@ from file_manip import *
 from volume_manip import *
 from active_window import active_window_process_name
 
+# Written by Ashkan.Z
 
 if __name__ == '__main__':
     settings = settings_retriever()
