@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import psutil
 import win32gui
 import win32process
@@ -16,7 +15,7 @@ def active_window_process_name() -> str:
             return psutil.Process(pid[-1]).name()
         except:
             pass
-=======
+
 import psutil
 import win32gui
 import win32process
@@ -34,4 +33,4 @@ def active_window_process_name() -> str:
             return psutil.Process(pid[-1]).name()
         except:
             pass
->>>>>>> fcbb245ca87b85934ae786a9a3bca2a61ecac463
+#>>>>>>> fcbb245ca87b85934ae786a9a3bca2a61ecac463
