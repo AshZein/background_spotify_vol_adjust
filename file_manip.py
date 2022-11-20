@@ -1,5 +1,5 @@
 import json
-# Written by Ashkan.Z
+
 def settings_retriever() -> None:
     """
     Reads a file storing the data for volume adjustment and another file storing

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from pycaw.pycaw import AudioUtilities, ISimpleAudioVolume, IAudioEndpointVolume
 from comtypes import CLSCTX_ALL
 from ctypes import cast, POINTER
@@ -59,7 +58,7 @@ def auto_pause():
     """
     autopause for when media is playing from certain sites (i.e. youtube..)
     """
-=======
+
 from pycaw.pycaw import AudioUtilities, ISimpleAudioVolume, IAudioEndpointVolume
 from comtypes import CLSCTX_ALL
 from ctypes import cast, POINTER
@@ -114,10 +113,3 @@ def vol_setter(active: dict, level=1.0) -> dict:
             pass
 
     return acti
-
-
-def auto_pause():
-    """
-    autopause for when media is playing from certain sites (i.e. youtube..)
-    """
->>>>>>> fcbb245ca87b85934ae786a9a3bca2a61ecac463
